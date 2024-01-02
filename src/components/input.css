@@ -1,0 +1,8 @@
+input {
+    background: #333a3b;
+    box-shadow:  7px 7px 14px #242929,
+    -7px -7px 14px #424b4d;
+    height: 3rem;
+    font-size: 2rem;
+    padding: 5px 20px;
+}
