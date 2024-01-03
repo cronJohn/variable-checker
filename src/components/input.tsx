@@ -1,7 +1,5 @@
 import { createSignal } from 'solid-js';
 
-import "./input.css"
-
 function VariableInput(props: any) {
     const [value, _] = createSignal('');
 
@@ -9,7 +7,8 @@ function VariableInput(props: any) {
         <input
         type="text"
         value={value()}
-        class="w-30vw lc rounded-lg border-none"
+        class="w-30vw h-3rem font-size-2rem c-tc-light rounded-lg border-none
+               px-20px py-5px bg-#333a3b nm-bs"
         placeholder={props.placeholder}
         />
     );

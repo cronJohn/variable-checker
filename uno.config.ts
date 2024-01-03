@@ -1,9 +1,18 @@
 import { defineConfig } from 'unocss'
 
 export default defineConfig({
-  rules: [
-    ['pc', { color: '#20EBFD' }],
-    ['lc', { color: '#e0ebec' }],
-    ['dc', { color: '#333a3b' }],
-  ],
+    theme: {
+        colors: {
+            'tc': {
+                'primary': '#20EBFD',
+                'dark': '#333a3b',
+                'light': '#e0ebec',
+            },
+        },
+    },
+    rules: [
+        ['nm-bs', [
+            ['box-shadow', '7px 7px 14px #242929, -7px -7px 14px #424b4d'],
+        ]],
+    ],
 })
