@@ -13,6 +13,7 @@
     "unocss": "^0.58.3"
   },
   "devDependencies": {
+    "@unocss/preset-web-fonts": "^0.58.3",
     "typescript": "^5.2.2",
     "vite": "^5.0.8",
     "vite-plugin-solid": "^2.8.0"
