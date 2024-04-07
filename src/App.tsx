@@ -1,17 +1,13 @@
-import VariableInput from './components/input'
+import { createSignal, type Component } from 'solid-js';
+import { LangSelect } from './components/select';
 
-function App() {
+const App: Component = () => {
     return (
-        <>
-            <div class='container ma h-100dvh flex flex-col flex-justify-center flex-items-center
-                        gap-lg'>
-                <h1 class='c-tc-light font-main '>Variable name:</h1>
-                <div>
-                    <VariableInput />
-                </div>
-            </div>
-        </>
+        <div class='bg-dark h-100vh font-code flex justify-center items-center'>
+            <p class="text-size-5xl m-0 text-primary">Hello World!</p>
+            <LangSelect />
+        </div>
     )
-}
+};
 
-export default App
+export default App;
