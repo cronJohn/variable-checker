@@ -1,0 +1,26 @@
+.text-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.text-field__label {
+  font-weight: 500;
+  user-select: none;
+}
+.text-field__input {
+  display: inline-flex;
+  border-radius: 6px;
+  padding: 6px 12px;
+  outline: none;
+  transition: border-color 250ms, color 250ms;
+}
+.text-field__input:focus-visible {
+  outline-offset: 2px;
+}
+.text-field__description {
+  user-select: none;
+}
+.text-field__error-message {
+  user-select: none;
+}
+
