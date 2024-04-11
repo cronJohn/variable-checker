@@ -1,3 +1,6 @@
+.text-field__label, .text-field__input {
+    text-align: center;
+}
 .text-field {
   display: flex;
   flex-direction: column;
