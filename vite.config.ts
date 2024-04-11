@@ -5,6 +5,7 @@ import solidPlugin from 'vite-plugin-solid';
 import UnocssPlugin from '@unocss/vite';
 
 export default defineConfig({
+    base: '/variable-checker/',
     plugins: [
         // devtools(),
         solidPlugin(),

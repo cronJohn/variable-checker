@@ -8,7 +8,8 @@
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "deploy": "bunx gh-pages -d dist"
   },
   "devDependencies": {
     "@solidjs/testing-library": "^0.8.7",
@@ -29,6 +30,7 @@
   "dependencies": {
     "@kobalte/core": "^0.12.6",
     "@unocss/reset": "^0.59.0",
+    "gh-pages": "^6.1.1",
     "solid-js": "^1.8.11"
   }
 }
