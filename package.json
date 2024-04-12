@@ -12,10 +12,12 @@
     "deploy": "bunx gh-pages -d dist"
   },
   "devDependencies": {
+    "@iconify-json/skill-icons": "^1.1.8",
     "@solidjs/testing-library": "^0.8.7",
     "@testing-library/jest-dom": "^6.4.2",
     "@types/jest": "^29.5.12",
     "@types/testing-library__jest-dom": "^6.0.0",
+    "@unocss/preset-icons": "^0.59.1",
     "@unocss/preset-mini": "^0.58.3",
     "@unocss/preset-web-fonts": "^0.59.0",
     "@unocss/vite": "^0.58.3",
@@ -28,6 +30,7 @@
     "vitest": "^1.4.0"
   },
   "dependencies": {
+    "@iconify-icon/solid": "^2.0.0",
     "@kobalte/core": "^0.12.6",
     "@unocss/reset": "^0.59.0",
     "gh-pages": "^6.1.1",
