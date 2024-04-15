@@ -4,6 +4,8 @@ import { Results } from './components/results'
 import { Index, Show, type Component } from 'solid-js';
 import { createStore } from 'solid-js/store'
 
+import {Motion, Presence} from "solid-motionone"
+
 const App: Component = () => {
     const [store, setStore] = createStore([]);
 
@@ -12,12 +14,21 @@ const App: Component = () => {
             <div class='w-35vw rounded-lg shadow-xl'>
                 <Input getter={store} setter={setStore}/>
                 <Results>
-                    <div class='flex flex-col items-center gap-.2rem'>
+                    <div class='flex flex-col mx-auto w-50% gap-.2rem'>
                         <Index each={store}>
-                        {(input) => (
-                            <Show when={input()[0]}>
-                                <Language language={input()[1]} />
-                            </Show>
+                        {(input, index) => (
+                            <Presence>
+                                <Show when={input()[0]}>
+                                    <Motion.div
+                                        initial={{ scale: 0 }}
+                                        animate={{ scale: 1 }}
+                                        exit={{ scale: 0, opacity: 0 }}
+                                        transition={{ duration: 0.1, easing: "ease-in-out", delay: index * 0.02 }}
+                                    >
+                                        <Language language={input()[1]} />
+                                    </Motion.div>
+                                </Show>
+                            </Presence>
                         )}
                         </Index>
                     </div>

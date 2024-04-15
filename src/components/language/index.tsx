@@ -22,8 +22,8 @@ export function Language(props: any){
     const desc: string = props.language.split(' ')[1];
 
     return (
-        <div class="flex items-center justify-between w-50% p-3 rounded-lg shadow-sm text-light bg-dark-light">
-            <span class="">{lang}</span>
+        <div class="flex flex-items-center p-3 rounded-lg shadow-sm text-light bg-dark-light">
+            <span>{lang}</span>
             <Show when={desc}>
                 <Tooltip.Root openDelay={100} closeDelay={100}>
                       <Tooltip.Trigger class="tooltip__trigger ml-auto mr-1 h-2rem font-code bg-second text-light rd-8px">{desc} only</Tooltip.Trigger>
@@ -35,7 +35,7 @@ export function Language(props: any){
                       </Tooltip.Portal>
                 </Tooltip.Root>
             </Show>
-            <Icon icon={`skill-icons:${langToIconMapping[lang]}`} width="32" height="32"/>
+            <Icon classList={{"ml-a": !desc}} icon={`skill-icons:${langToIconMapping[lang]}`} width="32" height="32"/>
         </div>
     );
 }
