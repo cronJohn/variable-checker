@@ -1,4 +1,4 @@
-import { RegexChecker } from './RegexChecker'; // Import the class to be tested
+import { RegexChecker } from './RegexChecker';
 
 describe('Check RegexChecker', () => {
     it('should return a Promise array containing all regex checks', async () => {

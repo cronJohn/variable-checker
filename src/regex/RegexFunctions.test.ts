@@ -1,326 +1,80 @@
-import { RegexFunctions } from './RegexFunctions'; // Import the class to be tested
+import { RegexFunctions } from './RegexFunctions';
 
-describe('Check JavaScript regex checker', () => {
-    it('should return [true, ...] for valid variable names', async () => {
-        const validVariableNames = [
-            'foo',
-            '_bar',
-            '$baz',
-            'baz1'
-        ];
+class Tester {
+    static test(lang: string, validNames: string[], invalidNames: string[]){
+        describe(`Check ${lang} regex checker`, () => {
+            it('should return [true, ...] for valid variable names', async () => {
 
-        for (const variableName of validVariableNames) {
-            const result = await RegexFunctions['JS_ES5_1'](variableName)
-            expect(result[0]).toEqual(true);
-        }
-    })
+                for (const variableName of validNames) {
+                    const result = await RegexFunctions[lang.toUpperCase()](variableName)
+                    expect(result[0]).toEqual(true);
+                }
+            })
 
-    it('should return [false, ...] for invalid variable names', async () => {
-        const validVariableNames = [
-            '🚀',
-            'if',
-            'foo bar',
-        ];
+            it('should return [false, ...] for invalid variable names', async () => {
 
-        for (const variableName of validVariableNames) {
-            const result = await RegexFunctions['JS_ES5_1'](variableName)
-            expect(result[0]).toEqual(false);
-        }
-    })
-})
+                for (const variableName of invalidNames) {
+                    const result = await RegexFunctions[lang.toUpperCase()](variableName)
+                    expect(result[0]).toEqual(false);
+                }
+            })
+        })
+    }
+}
 
-describe('Check Go regex checker', () => {
-    it('should return [true, ...] for valid variable names', async () => {
-        const validVariableNames = [
-            'foo',
-            '_bar',
-            'baz1'
-        ];
+Tester.test("JavaScript", 
+    ["foo", "_bar", "$baz", "baz1"],
+    ["🚀", "if", "foo bar"]
+);
 
-        for (const variableName of validVariableNames) {
-            const result = await RegexFunctions['GO'](variableName)
-            expect(result[0]).toEqual(true);
-        }
-    })
+Tester.test("Go",
+    ["foo", "_bar", "baz1"],
+    ["🚀","if","$baz","foo bar"]
+);
 
-    it('should return [false, ...] for invalid variable names', async () => {
-        const validVariableNames = [
-            '🚀',
-            'if',
-            '$baz',
-            'foo bar',
-        ];
+Tester.test("Python",
+    ["foo", "_bar", "baz1"],
+    ["🚀", "if", "$baz", "foo bar"]
+);
 
-        for (const variableName of validVariableNames) {
-            const result = await RegexFunctions['GO'](variableName)
-            expect(result[0]).toEqual(false);
-        }
-    })
-})
 
-describe('Check Python regex checker', () => {
-    it('should return [true, ...] for valid variable names', async () => {
-        const validVariableNames = [
-            'foo',
-            '_bar',
-            'baz1'
-        ];
+Tester.test("Rust",
+    ["foo", "_bar", "baz1"],
+    ["🚀", "if", "$baz", "foo bar"]
+);
 
-        for (const variableName of validVariableNames) {
-            const result = await RegexFunctions['PYTHON'](variableName)
-            expect(result[0]).toEqual(true);
-        }
-    })
+Tester.test("Java",
+    ["foo", "_bar", "baz1", "$test"],
+    ["🚀", "if", "foo bar"]
+);
 
-    it('should return [false, ...] for invalid variable names', async () => {
-        const validVariableNames = [
-            '🚀',
-            'if',
-            '$baz',
-            'foo bar',
-        ];
+Tester.test("C#",
+    ["foo", "_bar", "baz1", "@if"],
+    ["🚀", "if", "$foo", "foo bar"]
+);
 
-        for (const variableName of validVariableNames) {
-            const result = await RegexFunctions['PYTHON'](variableName)
-            expect(result[0]).toEqual(false);
-        }
-    })
-})
+Tester.test("C++",
+    ["foo", "_bar", "baz1"],
+    ["🚀", "if", "$foo", "foo bar"]
+);
 
-describe('Check Rust regex checker', () => {
-    it('should return [true, ...] for valid variable names', async () => {
-        const validVariableNames = [
-            'foo',
-            '_bar',
-            'baz1'
-        ];
+Tester.test("Swift",
+    ["foo", "🚀", "_bar", "baz1"],
+    ["if", "$foo", "foo bar"]
+);
 
-        for (const variableName of validVariableNames) {
-            const result = await RegexFunctions['RUST'](variableName)
-            expect(result[0]).toEqual(true);
-        }
-    })
+Tester.test("Kotlin",
+    ["foo", "_bar", "$bar", "baz1"],
+    ["🚀", "if", "foo bar"]
+);
 
-    it('should return [false, ...] for invalid variable names', async () => {
-        const validVariableNames = [
-            '🚀',
-            'if',
-            '$baz',
-            'foo bar',
-        ];
+Tester.test("Ruby",
+    ["foo", "_bar", "baz1", "$global", "@instance", "@@class"],
+    ["🚀", "if", "foo bar"]
+);
 
-        for (const variableName of validVariableNames) {
-            const result = await RegexFunctions['RUST'](variableName)
-            expect(result[0]).toEqual(false);
-        }
-    })
-})
+Tester.test("Perl",
+    ["foo", "_bar", "baz1", "baz$", "$Scalar", "@Array", "%Hash"],
+    ["🚀", "if", "foo bar"]
+);
 
-describe('Check Java regex checker', () => {
-    it('should return [true, ...] for valid variable names', async () => {
-        const validVariableNames = [
-            'foo',
-            '_bar',
-            'baz1',
-            '$test'
-        ];
-
-        for (const variableName of validVariableNames) {
-            const result = await RegexFunctions['JAVA'](variableName)
-            expect(result[0]).toEqual(true);
-        }
-    })
-
-    it('should return [false, ...] for invalid variable names', async () => {
-        const validVariableNames = [
-            '🚀',
-            'if',
-            'foo bar',
-        ];
-
-        for (const variableName of validVariableNames) {
-            const result = await RegexFunctions['JAVA'](variableName)
-            expect(result[0]).toEqual(false);
-        }
-    })
-})
-
-describe('Check C# regex checker', () => {
-    it('should return [true, ...] for valid variable names', async () => {
-        const validVariableNames = [
-            'foo',
-            '_bar',
-            'baz1',
-            '@if'
-        ];
-
-        for (const variableName of validVariableNames) {
-            const result = await RegexFunctions['CS'](variableName)
-            expect(result[0]).toEqual(true);
-        }
-    })
-
-    it('should return [false, ...] for invalid variable names', async () => {
-        const validVariableNames = [
-            '🚀',
-            'if',
-            '$foo',
-            'foo bar',
-        ];
-
-        for (const variableName of validVariableNames) {
-            const result = await RegexFunctions['CS'](variableName)
-            expect(result[0]).toEqual(false);
-        }
-    })
-})
-
-describe('Check C++ regex checker', () => {
-    it('should return [true, ...] for valid variable names', async () => {
-        const validVariableNames = [
-            'foo',
-            '_bar',
-            'baz1',
-        ];
-
-        for (const variableName of validVariableNames) {
-            const result = await RegexFunctions['CPP'](variableName)
-            expect(result[0]).toEqual(true);
-        }
-    })
-
-    it('should return [false, ...] for invalid variable names', async () => {
-        const validVariableNames = [
-            '🚀',
-            'if',
-            '$foo',
-            'foo bar',
-        ];
-
-        for (const variableName of validVariableNames) {
-            const result = await RegexFunctions['CPP'](variableName)
-            expect(result[0]).toEqual(false);
-        }
-    })
-})
-
-describe('Check Swift regex checker', () => {
-    it('should return [true, ...] for valid variable names', async () => {
-        const validVariableNames = [
-            'foo',
-            '🚀',
-            '_bar',
-            'baz1',
-        ];
-
-        for (const variableName of validVariableNames) {
-            const result = await RegexFunctions['SWIFT'](variableName)
-            expect(result[0]).toEqual(true);
-        }
-    })
-
-    it('should return [false, ...] for invalid variable names', async () => {
-        const validVariableNames = [
-            'if',
-            '$foo',
-            'foo bar',
-        ];
-
-        for (const variableName of validVariableNames) {
-            const result = await RegexFunctions['SWIFT'](variableName)
-            expect(result[0]).toEqual(false);
-        }
-    })
-})
-
-describe('Check Kotlin regex checker', () => {
-    it('should return [true, ...] for valid variable names', async () => {
-        const validVariableNames = [
-            'foo',
-            '_bar',
-            '$bar',
-            'baz1',
-        ];
-
-        for (const variableName of validVariableNames) {
-            const result = await RegexFunctions['KOTLIN'](variableName)
-            expect(result[0]).toEqual(true);
-        }
-    })
-
-    it('should return [false, ...] for invalid variable names', async () => {
-        const validVariableNames = [
-            '🚀',
-            'if',
-            'foo bar',
-        ];
-
-        for (const variableName of validVariableNames) {
-            const result = await RegexFunctions['KOTLIN'](variableName)
-            expect(result[0]).toEqual(false);
-        }
-    })
-})
-
-describe('Check Ruby regex checker', () => {
-    it('should return [true, ...] for valid variable names', async () => {
-        const validVariableNames = [
-            'foo',
-            '_bar',
-            'baz1',
-            '$global',
-            '@instance',
-            '@@class',
-        ];
-
-        for (const variableName of validVariableNames) {
-            const result = await RegexFunctions['RUBY'](variableName)
-            expect(result[0]).toEqual(true);
-        }
-    })
-
-    it('should return [false, ...] for invalid variable names', async () => {
-        const validVariableNames = [
-            '🚀',
-            'if',
-            'foo bar',
-        ];
-
-        for (const variableName of validVariableNames) {
-            const result = await RegexFunctions['RUBY'](variableName)
-            expect(result[0]).toEqual(false);
-        }
-    })
-})
-
-describe('Check Perl regex checker', () => {
-    it('should return [true, ...] for valid variable names', async () => {
-        const validVariableNames = [
-            'foo',
-            '_bar',
-            'baz1',
-            'baz$',
-            '$Scalar',
-            '@Array',
-            '%Hash',
-        ];
-
-        for (const variableName of validVariableNames) {
-            const result = await RegexFunctions['PERL'](variableName)
-            expect(result[0]).toEqual(true);
-        }
-    })
-
-    it('should return [false, ...] for invalid variable names', async () => {
-        const validVariableNames = [
-            '🚀',
-            'if',
-            'foo bar',
-        ];
-
-        for (const variableName of validVariableNames) {
-            const result = await RegexFunctions['PERL'](variableName)
-            expect(result[0]).toEqual(false);
-        }
-    })
-})
